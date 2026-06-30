@@ -8,13 +8,38 @@
   </head>
   <body>
     <main class="shell">
-      <header>
-        <h1>Brian Desktop</h1>
-        <p class="subtitle">CORE companion — scaffold</p>
+      <header class="topbar">
+        <div>
+          <h1>Brian Desktop</h1>
+          <p class="subtitle">CORE companion — Phase 0</p>
+        </div>
+        <div id="auth-actions" class="auth-actions"></div>
       </header>
+
       <section id="status" class="card">
         <p>Initializing…</p>
       </section>
+
+      <section id="session" class="card muted"></section>
+
+      <section class="card">
+        <h2>Tasks</h2>
+        <form id="task-form" class="inline-form">
+          <input id="task-title" type="text" placeholder="New task title" required />
+          <button type="submit">Create</button>
+        </form>
+        <ul id="task-list" class="item-list"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Sync</h2>
+        <div class="button-row">
+          <button id="sync-drain" type="button">Drain outbox</button>
+          <button id="sync-pull" type="button">Pull server</button>
+        </div>
+        <pre id="sync-log" class="log"></pre>
+      </section>
+
       <section id="contracts" class="card muted"></section>
     </main>
     <script type="module" src="/src/main.ts"></script>

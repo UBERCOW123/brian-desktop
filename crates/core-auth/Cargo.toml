@@ -1,6 +1,6 @@
 [package]
-name = "core-sync"
-description = "CORE local-first sync (outbox push / incremental pull)"
+name = "core-auth"
+description = "Supabase PKCE auth, session keyring storage, workspace and device registration"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
@@ -8,17 +8,17 @@ license.workspace = true
 authors.workspace = true
 
 [dependencies]
-core-auth = { workspace = true }
-core-contracts = { workspace = true }
 core-db = { workspace = true }
+reqwest = { workspace = true }
 serde = { workspace = true }
 serde_json = { workspace = true }
 thiserror = { workspace = true }
 tracing = { workspace = true }
-reqwest = { workspace = true }
 chrono = { workspace = true }
 uuid = { workspace = true }
-tokio = { workspace = true }
-
-[dev-dependencies]
-core-db = { workspace = true }
+url = "2"
+urlencoding = "2"
+base64 = "0.22"
+sha2 = "0.10"
+rand = "0.9"
+keyring = { version = "3", features = ["apple-native", "windows-native"] }

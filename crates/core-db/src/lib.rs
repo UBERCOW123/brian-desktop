@@ -1,9 +1,19 @@
-//! SQLite schema parity with CORE mobile [`DatabaseHelper`] (schema v14 target).
-//!
-//! Source of truth: `core/lib/data/database_helper.dart` in `vendor/core`.
+//! SQLite schema parity with CORE mobile `DatabaseHelper` (schema v14 target).
 
+mod commands;
+mod local_prefs;
+mod projections;
+mod repository;
+mod row_mapping;
 mod schema;
 
+pub use commands::CommandService;
+pub use local_prefs::{LocalPrefError, LocalPrefKey, LocalPrefs};
+pub use projections::{
+    Projections, TaskQueueItem, TaskQueueStatus, TimelineEntry, TimelineEntryType,
+    WidgetInstanceProjection,
+};
+pub use repository::{CoreRepository, RepositoryError};
 pub use schema::SCHEMA_VERSION;
 
 pub use rusqlite::Connection;
@@ -17,11 +27,12 @@ pub const DEFAULT_DB_FILENAME: &str = "core_os.db";
 pub enum DbError {
     #[error("sqlite: {0}")]
     Sqlite(#[from] rusqlite::Error),
+    #[error("repository: {0}")]
+    Repository(#[from] RepositoryError),
     #[error("schema version mismatch: expected {expected}, got {actual}")]
     SchemaVersion { expected: i32, actual: i32 },
 }
 
-/// Open (or create) the local CORE database and ensure schema is current.
 pub fn open(path: impl AsRef<Path>) -> Result<Connection, DbError> {
     let conn = SqliteConnection::open(path)?;
     conn.execute_batch("PRAGMA foreign_keys = ON; PRAGMA journal_mode = WAL;")?;
@@ -29,7 +40,6 @@ pub fn open(path: impl AsRef<Path>) -> Result<Connection, DbError> {
     Ok(conn)
 }
 
-/// Apply fresh schema — used for new databases and tests.
 pub fn migrate(conn: &Connection) -> Result<(), DbError> {
     let version: i32 = conn.query_row("PRAGMA user_version", [], |row| row.get(0))?;
 
@@ -41,7 +51,6 @@ pub fn migrate(conn: &Connection) -> Result<(), DbError> {
     }
 
     if version != SCHEMA_VERSION {
-        // Incremental migrations land in plan Phase 0 — fail loud until implemented.
         return Err(DbError::SchemaVersion {
             expected: SCHEMA_VERSION,
             actual: version,
@@ -51,7 +60,6 @@ pub fn migrate(conn: &Connection) -> Result<(), DbError> {
     Ok(())
 }
 
-/// In-memory database for unit tests.
 pub fn open_in_memory() -> Result<Connection, DbError> {
     open(":memory:")
 }

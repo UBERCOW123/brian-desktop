@@ -118,6 +118,11 @@ CREATE TABLE IF NOT EXISTS embedding_queue (
   enqueued_at TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS local_prefs (
+  key TEXT PRIMARY KEY,
+  value TEXT NOT NULL
+);
+
 CREATE VIRTUAL TABLE IF NOT EXISTS record_fts USING fts5(
   record_id UNINDEXED,
   kind UNINDEXED,

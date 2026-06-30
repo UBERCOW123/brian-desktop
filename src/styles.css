@@ -10,9 +10,86 @@ body {
 }
 
 .shell {
-  max-width: 720px;
+  max-width: 840px;
   margin: 0 auto;
   padding: 2.5rem 1.5rem;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.auth-actions button,
+.button-row button,
+.inline-form button {
+  background: #3c4043;
+  color: #e8eaed;
+  border: 1px solid #5f6368;
+  border-radius: 8px;
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+}
+
+.auth-actions button:hover,
+.button-row button:hover,
+.inline-form button:hover {
+  background: #4a4f56;
+}
+
+.inline-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.inline-form input {
+  flex: 1;
+  background: #0f1115;
+  border: 1px solid #2a2f38;
+  border-radius: 8px;
+  color: #e8eaed;
+  padding: 0.5rem 0.75rem;
+}
+
+.button-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.item-list {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.item-list .meta {
+  color: #9aa0a6;
+  font-size: 0.85rem;
+  margin-left: 0.5rem;
+}
+
+.item-list .empty {
+  list-style: none;
+  margin-left: -1.25rem;
+  color: #9aa0a6;
+}
+
+.log {
+  margin: 0;
+  padding: 0.75rem;
+  background: #0f1115;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  overflow-x: auto;
+}
+
+.card h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
 }
 
 header h1 {
