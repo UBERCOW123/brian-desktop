@@ -14,6 +14,13 @@ pub struct WidgetCatalog {
 
 #[derive(Debug, Clone, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
+pub struct WidgetSize {
+    pub width: i32,
+    pub height: i32,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct WidgetCatalogEntry {
     #[serde(rename = "type")]
     pub widget_type: String,
@@ -22,6 +29,24 @@ pub struct WidgetCatalogEntry {
     pub category: Option<String>,
     #[serde(default)]
     pub surface_kind: Option<String>,
+    #[serde(default = "default_allow_multiple")]
+    pub allow_multiple: bool,
+    #[serde(default)]
+    pub default_size: Option<WidgetSize>,
+}
+
+fn default_allow_multiple() -> bool {
+    true
+}
+
+impl WidgetCatalogEntry {
+    pub fn default_width(&self) -> i32 {
+        self.default_size.as_ref().map(|s| s.width).unwrap_or(2)
+    }
+
+    pub fn default_height(&self) -> i32 {
+        self.default_size.as_ref().map(|s| s.height).unwrap_or(2)
+    }
 }
 
 impl WidgetCatalog {

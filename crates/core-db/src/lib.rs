@@ -1,13 +1,15 @@
 //! SQLite schema parity with CORE mobile `DatabaseHelper` (schema v14 target).
 
 mod commands;
+mod layout;
 mod local_prefs;
 mod projections;
 mod repository;
 mod row_mapping;
 mod schema;
 
-pub use commands::CommandService;
+pub use commands::{CommandError, CommandService, WidgetLayoutInput};
+pub use layout::COLUMN_COUNT;
 pub use local_prefs::{LocalPrefError, LocalPrefKey, LocalPrefs};
 pub use projections::{
     Projections, TaskQueueItem, TaskQueueStatus, TimelineEntry, TimelineEntryType,

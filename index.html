@@ -7,41 +7,59 @@
     <link rel="stylesheet" href="/src/styles.css" />
   </head>
   <body>
-    <main class="shell">
+    <div class="app">
       <header class="topbar">
         <div>
           <h1>Brian Desktop</h1>
-          <p class="subtitle">CORE companion — Phase 0</p>
+          <p class="subtitle">Timeline-first · 8-column grid</p>
         </div>
-        <div id="auth-actions" class="auth-actions"></div>
+        <div class="topbar-actions">
+          <div id="auth-actions"></div>
+          <button id="open-drawer" type="button" class="btn btn-primary">Widgets</button>
+        </div>
       </header>
 
-      <section id="status" class="card">
-        <p>Initializing…</p>
-      </section>
+      <section id="status" class="banner hidden"></section>
+      <section id="session" class="session-strip"></section>
 
-      <section id="session" class="card muted"></section>
+      <main class="home">
+        <section class="timeline-section">
+          <div class="section-head">
+            <h2>Timeline</h2>
+            <form id="task-form" class="inline-form">
+              <input id="task-title" type="text" placeholder="Quick add task" />
+              <button type="submit" class="btn btn-small">Add</button>
+            </form>
+          </div>
+          <div id="timeline" class="timeline-list"></div>
+        </section>
+      </main>
 
-      <section class="card">
-        <h2>Tasks</h2>
-        <form id="task-form" class="inline-form">
-          <input id="task-title" type="text" placeholder="New task title" required />
-          <button type="submit">Create</button>
-        </form>
-        <ul id="task-list" class="item-list"></ul>
-      </section>
-
-      <section class="card">
-        <h2>Sync</h2>
-        <div class="button-row">
-          <button id="sync-drain" type="button">Drain outbox</button>
-          <button id="sync-pull" type="button">Pull server</button>
+      <div id="drawer-scrim" class="drawer-scrim" hidden></div>
+      <aside id="drawer" class="drawer" aria-hidden="true">
+        <header class="drawer-header">
+          <div class="drawer-tabs">
+            <button type="button" class="drawer-tab active" data-panel="panel-grid">Grid</button>
+            <button type="button" class="drawer-tab" data-panel="panel-market">Marketplace</button>
+            <button type="button" class="drawer-tab" data-panel="panel-sync">Sync</button>
+          </div>
+          <button id="close-drawer" type="button" class="icon-btn" aria-label="Close">×</button>
+        </header>
+        <div id="panel-grid" class="drawer-panel active">
+          <div id="widget-grid"></div>
         </div>
-        <pre id="sync-log" class="log"></pre>
-      </section>
-
-      <section id="contracts" class="card muted"></section>
-    </main>
+        <div id="panel-market" class="drawer-panel">
+          <div id="marketplace"></div>
+        </div>
+        <div id="panel-sync" class="drawer-panel">
+          <div class="button-row">
+            <button id="sync-drain" type="button" class="btn">Drain outbox</button>
+            <button id="sync-pull" type="button" class="btn">Pull server</button>
+          </div>
+          <pre id="sync-log" class="log"></pre>
+        </div>
+      </aside>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

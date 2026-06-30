@@ -53,6 +53,9 @@ pub fn run() {
             commands::sync_drain,
             commands::sync_pull,
             commands::widget_catalog,
+            commands::install_widget,
+            commands::update_widget_layouts,
+            commands::remove_widget,
         ])
         .run(tauri::generate_context!())
         .expect("error while running Brian Desktop");

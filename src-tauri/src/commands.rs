@@ -2,7 +2,7 @@ use core_auth::{
     fetch_default_workspace_id, platform_label, DeviceRegistrationService, OAuthFlow,
     SupabaseConfig, WorkspaceContext,
 };
-use core_db::{CommandService, CoreRepository, LocalPrefKey, LocalPrefs, Projections};
+use core_db::{CommandService, CoreRepository, LocalPrefKey, LocalPrefs, Projections, WidgetLayoutInput};
 use core_sync::CoreSyncService;
 use serde::Serialize;
 use tauri::State;
@@ -276,4 +276,55 @@ pub async fn sync_pull(state: State<'_, AppState>) -> Result<core_sync::PullResu
 #[tauri::command]
 pub fn widget_catalog() -> Result<core_contracts::WidgetCatalog, String> {
     core_contracts::WidgetCatalog::load().map_err(|e| e.to_string())
+}
+
+fn command_service_for<'a>(
+    conn: &'a core_db::Connection,
+) -> Result<CommandService<'a>, String> {
+    let device_id = LocalPrefs::new(conn)
+        .get(LocalPrefKey::CloudDeviceId)
+        .map_err(|e| e.to_string())?
+        .unwrap_or_else(|| "local-device".into());
+    Ok(CommandService::new(conn, device_id))
+}
+
+#[tauri::command]
+pub fn install_widget(widget_type: String, state: State<'_, AppState>) -> Result<String, String> {
+    let catalog = core_contracts::WidgetCatalog::load().map_err(|e| e.to_string())?;
+    let entry = catalog
+        .find(&widget_type)
+        .ok_or_else(|| format!("Unknown widget type: {widget_type}"))?
+        .clone();
+    state.with_db(|conn| {
+        let existing = Projections::new(CoreRepository::new(conn))
+            .widget_instances()
+            .map_err(|e| e.to_string())?;
+        command_service_for(conn)?
+            .install_widget(&entry, &existing)
+            .map(|r| r.id.to_string())
+            .map_err(|e| e.to_string())
+    })
+}
+
+#[tauri::command]
+pub fn update_widget_layouts(
+    layouts: Vec<WidgetLayoutInput>,
+    state: State<'_, AppState>,
+) -> Result<u32, String> {
+    state.with_db(|conn| {
+        command_service_for(conn)?
+            .update_widget_layouts(&layouts)
+            .map(|records| records.len() as u32)
+            .map_err(|e| e.to_string())
+    })
+}
+
+#[tauri::command]
+pub fn remove_widget(id: String, state: State<'_, AppState>) -> Result<(), String> {
+    let widget_id = uuid::Uuid::parse_str(&id).map_err(|e| e.to_string())?;
+    state.with_db(|conn| {
+        command_service_for(conn)?
+            .delete_widget(widget_id)
+            .map_err(|e| e.to_string())
+    })
 }
