@@ -1,38 +1,31 @@
 # Implementation plan
 
-Scaffold is complete. Feature work follows the [Desktop Companion Design](https://github.com/UBERCOW123/brian-desktop) plan (Cursor: `desktop_companion_design_3042ed74`).
+Phases 0–2 are complete. Remaining work follows [`desktop_companion_design_3042ed74.plan.md`](../desktop_companion_design_3042ed74.plan.md).
 
 ## Phase checklist
 
-| Phase | Scope | Crates / paths |
-|-------|--------|----------------|
-| **0 — Contracts & foundation** | Contract tests, PKCE auth, device registration, SQLite projections | `core-contracts`, `core-db`, `core-sync`, `src-tauri` |
-| **1 — Dashboard** | Timeline, widget grid, marketplace, Brian Assist, push/pull sync | UI `src/`, `core-sync` |
-| **2 — Work Room** | Browser, notebook, spreadsheet, Monaco, layout persistence | `src-tauri` WebViews, new `app_setting` keys in core |
-| **3 — Desktop agent** | OS tools, Gmail/GitHub OAuth, clipboard widgets | `core-mcp`, `src-tauri` |
-| **1.5 — Office** | OnlyOffice embed (optional) | Work Room panes |
+| Phase | Scope | Status |
+|-------|--------|--------|
+| **0 — Contracts & foundation** | Contract tests, PKCE auth, device registration, SQLite projections | Done |
+| **1 — Dashboard data** | Timeline, widget grid, marketplace, push/pull sync | Done |
+| **2 — Design system & shell** | Theme presets, glass cards, dockview shell, Assist UI chrome | Done |
+| **3 — Work Room** | Browser, notebook, spreadsheet, Monaco, layout persistence | Next |
+| **4 — Desktop agent** | OS tools, Gmail/GitHub OAuth, MCP orchestrator | Planned |
+| **5 — Office** | OnlyOffice embed (optional) | Planned |
 
-## Start Phase 0
+## Theme regeneration
 
-Recommended order:
+When mobile `theme_presets.dart` changes:
 
-1. **Contract parity tests** — assert Rust record kinds / payload keys against `vendor/core/docs/agent/CORE_DATA_MODEL.md` and widget seed entries.
-2. **Auth** — PKCE + keyring session; register `com.celix.core.desktop://login-callback` in Supabase.
-3. **Device registration** — mirror mobile `DeviceRegistrationService` (`platform = windows`).
-4. **Sync engine** — implement `SyncPushClient` / `SyncPullClient` per `SYNC_STRATEGY.md`.
-5. **Read projections** — tasks, timeline, widgets from `core_records`.
+```powershell
+npm run generate:theme
+```
 
-## Verify scaffold
+## Verify
 
 ```powershell
 .\scripts\bootstrap.ps1
 cargo test --workspace
+npm run build
 npm run tauri dev
 ```
-
-## Core repo coordination (parallel PRs)
-
-- Push `core-contract-v0.1` tag from `core`
-- Desktop OAuth redirect in Supabase Auth
-- `app_setting` theme sync migration (optional)
-- `workroom_session` kind migration before Work Room ships

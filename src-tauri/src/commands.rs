@@ -4,7 +4,7 @@ use core_auth::{
 };
 use core_db::{CommandService, CoreRepository, LocalPrefKey, LocalPrefs, Projections, WidgetLayoutInput};
 use core_sync::CoreSyncService;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use tauri::State;
 
 use crate::app_state::AppState;
@@ -325,6 +325,134 @@ pub fn remove_widget(id: String, state: State<'_, AppState>) -> Result<(), Strin
     state.with_db(|conn| {
         command_service_for(conn)?
             .delete_widget(widget_id)
+            .map_err(|e| e.to_string())
+    })
+}
+
+#[tauri::command]
+pub fn seed_desktop_layout_if_empty(state: State<'_, AppState>) -> Result<bool, String> {
+    let catalog = core_contracts::WidgetCatalog::load().map_err(|e| e.to_string())?;
+    state.with_db(|conn| {
+        command_service_for(conn)?
+            .seed_desktop_layout_if_empty(&catalog)
+            .map_err(|e| e.to_string())
+    })
+}
+
+#[tauri::command]
+pub fn reset_desktop_layout(state: State<'_, AppState>) -> Result<u32, String> {
+    let catalog = core_contracts::WidgetCatalog::load().map_err(|e| e.to_string())?;
+    state.with_db(|conn| {
+        command_service_for(conn)?
+            .reset_desktop_layout(&catalog)
+            .map_err(|e| e.to_string())
+    })
+}
+
+#[tauri::command]
+pub fn repair_workbench_layout(
+    state: State<'_, AppState>,
+    visible_row_units: Option<i32>,
+) -> Result<bool, String> {
+    let catalog = core_contracts::WidgetCatalog::load().map_err(|e| e.to_string())?;
+    state.with_db(|conn| {
+        command_service_for(conn)?
+            .repair_workbench_layout(&catalog, visible_row_units)
+            .map_err(|e| e.to_string())
+    })
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct UiPrefs {
+    pub theme_mode: String,
+    pub accent_palette: String,
+    pub layout_locked: bool,
+}
+
+impl Default for UiPrefs {
+    fn default() -> Self {
+        Self {
+            theme_mode: "dark".into(),
+            accent_palette: "green".into(),
+            layout_locked: false,
+        }
+    }
+}
+
+#[tauri::command]
+pub fn get_ui_prefs(state: State<'_, AppState>) -> Result<UiPrefs, String> {
+    state.with_db(|conn| {
+        let prefs = LocalPrefs::new(conn);
+        Ok(UiPrefs {
+            theme_mode: prefs
+                .get(LocalPrefKey::ThemeMode)
+                .map_err(|e| e.to_string())?
+                .unwrap_or_else(|| "dark".into()),
+            accent_palette: prefs
+                .get(LocalPrefKey::AccentPalette)
+                .map_err(|e| e.to_string())?
+                .unwrap_or_else(|| "green".into()),
+            layout_locked: prefs
+                .get(LocalPrefKey::LayoutLocked)
+                .map_err(|e| e.to_string())?
+                .map(|v| v == "true")
+                .unwrap_or(false),
+        })
+    })
+}
+
+#[tauri::command]
+pub fn set_ui_prefs(prefs: UiPrefs, state: State<'_, AppState>) -> Result<(), String> {
+    state.with_db(|conn| {
+        let store = LocalPrefs::new(conn);
+        store
+            .set(LocalPrefKey::ThemeMode, &prefs.theme_mode)
+            .map_err(|e| e.to_string())?;
+        store
+            .set(LocalPrefKey::AccentPalette, &prefs.accent_palette)
+            .map_err(|e| e.to_string())?;
+        store
+            .set(
+                LocalPrefKey::LayoutLocked,
+                if prefs.layout_locked { "true" } else { "false" },
+            )
+            .map_err(|e| e.to_string())?;
+        Ok(())
+    })
+}
+
+#[tauri::command]
+pub fn get_shell_layout(state: State<'_, AppState>) -> Result<Option<String>, String> {
+    state.with_db(|conn| {
+        LocalPrefs::new(conn)
+            .get(LocalPrefKey::ShellLayout)
+            .map_err(|e| e.to_string())
+    })
+}
+
+#[tauri::command]
+pub fn set_shell_layout(layout: String, state: State<'_, AppState>) -> Result<(), String> {
+    state.with_db(|conn| {
+        LocalPrefs::new(conn)
+            .set(LocalPrefKey::ShellLayout, &layout)
+            .map_err(|e| e.to_string())
+    })
+}
+
+#[tauri::command]
+pub fn get_assist_prefs(state: State<'_, AppState>) -> Result<Option<String>, String> {
+    state.with_db(|conn| {
+        LocalPrefs::new(conn)
+            .get(LocalPrefKey::AssistPrefs)
+            .map_err(|e| e.to_string())
+    })
+}
+
+#[tauri::command]
+pub fn set_assist_prefs(prefs: String, state: State<'_, AppState>) -> Result<(), String> {
+    state.with_db(|conn| {
+        LocalPrefs::new(conn)
+            .set(LocalPrefKey::AssistPrefs, &prefs)
             .map_err(|e| e.to_string())
     })
 }

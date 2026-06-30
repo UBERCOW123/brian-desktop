@@ -4,62 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Brian Desktop</title>
-    <link rel="stylesheet" href="/src/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles/tokens.css" />
+    <link rel="stylesheet" href="/src/styles/tremor.css" />
+    <link rel="stylesheet" href="/src/styles/components.css" />
+    <link rel="stylesheet" href="/src/styles/shell.css" />
   </head>
   <body>
     <div class="app">
-      <header class="topbar">
-        <div>
-          <h1>Brian Desktop</h1>
-          <p class="subtitle">Timeline-first · 8-column grid</p>
+      <header class="titlebar">
+        <div class="titlebar__brand">
+          <img src="/assets/branding/brian_mark.svg" alt="" class="titlebar__mark" width="28" height="28" />
+          <div>
+            <h1 class="titlebar__title">Brian Desktop</h1>
+            <p class="titlebar__subtitle">CORE companion</p>
+          </div>
         </div>
-        <div class="topbar-actions">
-          <div id="auth-actions"></div>
-          <button id="open-drawer" type="button" class="btn btn-primary">Widgets</button>
-        </div>
+        <div id="titlebar-controls" class="titlebar__controls"></div>
       </header>
 
       <section id="status" class="banner hidden"></section>
-      <section id="session" class="session-strip"></section>
-
-      <main class="home">
-        <section class="timeline-section">
-          <div class="section-head">
-            <h2>Timeline</h2>
-            <form id="task-form" class="inline-form">
-              <input id="task-title" type="text" placeholder="Quick add task" />
-              <button type="submit" class="btn btn-small">Add</button>
-            </form>
-          </div>
-          <div id="timeline" class="timeline-list"></div>
-        </section>
-      </main>
-
-      <div id="drawer-scrim" class="drawer-scrim" hidden></div>
-      <aside id="drawer" class="drawer" aria-hidden="true">
-        <header class="drawer-header">
-          <div class="drawer-tabs">
-            <button type="button" class="drawer-tab active" data-panel="panel-grid">Grid</button>
-            <button type="button" class="drawer-tab" data-panel="panel-market">Marketplace</button>
-            <button type="button" class="drawer-tab" data-panel="panel-sync">Sync</button>
-          </div>
-          <button id="close-drawer" type="button" class="icon-btn" aria-label="Close">×</button>
-        </header>
-        <div id="panel-grid" class="drawer-panel active">
-          <div id="widget-grid"></div>
-        </div>
-        <div id="panel-market" class="drawer-panel">
-          <div id="marketplace"></div>
-        </div>
-        <div id="panel-sync" class="drawer-panel">
-          <div class="button-row">
-            <button id="sync-drain" type="button" class="btn">Drain outbox</button>
-            <button id="sync-pull" type="button" class="btn">Pull server</button>
-          </div>
-          <pre id="sync-log" class="log"></pre>
-        </div>
-      </aside>
+      <main id="app-shell" class="app-shell-host" aria-label="Workbench"></main>
     </div>
-    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

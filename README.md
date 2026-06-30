@@ -50,7 +50,7 @@ Desktop OAuth redirect (when wired): `com.celix.core.desktop://login-callback`
 
 ## Status
 
-**Scaffold complete** — workspace compiles, SQLite opens, contracts resolve. Feature work follows the desktop companion implementation plan (sync, dashboard, Work Room, OS agent).
+**Scaffold complete** — workspace compiles, SQLite opens, contracts resolve. **Phases 0–2 shipped:** sync, dockable dashboard shell, mobile theme presets, Brian Assist UI chrome.
 
 ## What not to do
 

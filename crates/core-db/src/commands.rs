@@ -1,6 +1,6 @@
 //! Local write path — record + event + outbox (port of `CoreCommandService` subset).
 
-use crate::layout::{can_install, clamp_layout, next_available_row, COLUMN_COUNT};
+use crate::layout::{can_install, clamp_layout_desktop, next_available_row, COLUMN_COUNT};
 use crate::projections::WidgetInstanceProjection;
 use crate::repository::CoreRepository;
 use chrono::Utc;
@@ -82,6 +82,148 @@ impl<'a> CommandService<'a> {
         )
     }
 
+    pub fn seed_desktop_layout_if_empty(
+        &self,
+        catalog: &core_contracts::WidgetCatalog,
+    ) -> Result<bool, CommandError> {
+        use crate::desktop_layout::{catalog_entry, desktop_default_layout};
+        use crate::projections::Projections;
+
+        let existing =
+            Projections::new(CoreRepository::new(self.repo.connection())).widget_instances()?;
+        if !existing.is_empty() {
+            return Ok(false);
+        }
+
+        for slot in desktop_default_layout() {
+            let entry = catalog_entry(catalog, slot.widget_type).ok_or_else(|| {
+                CommandError::UnknownWidgetType(slot.widget_type.to_string())
+            })?;
+            self.create_widget_record(
+                None,
+                &entry.widget_type,
+                slot.pos_x,
+                slot.pos_y,
+                slot.width,
+                slot.height,
+                "{}",
+                true,
+            )?;
+        }
+        Ok(true)
+    }
+
+    pub fn reset_desktop_layout(
+        &self,
+        catalog: &core_contracts::WidgetCatalog,
+    ) -> Result<u32, CommandError> {
+        use crate::projections::Projections;
+
+        let existing =
+            Projections::new(CoreRepository::new(self.repo.connection())).widget_instances()?;
+        let count = existing.len() as u32;
+        for widget in &existing {
+            self.delete_widget(widget.id)?;
+        }
+        self.seed_desktop_layout_if_empty(catalog)?;
+        use crate::local_prefs::{LocalPrefKey, LocalPrefs};
+        use crate::desktop_layout::WORKBENCH_LAYOUT_EPOCH;
+        LocalPrefs::new(self.repo.connection())
+            .set(
+                LocalPrefKey::WorkbenchLayoutEpoch,
+                &WORKBENCH_LAYOUT_EPOCH.to_string(),
+            )
+            .map_err(|e| CommandError::UnknownWidgetType(e.to_string()))?;
+        Ok(count)
+    }
+
+    pub fn repair_workbench_layout(
+        &self,
+        catalog: &core_contracts::WidgetCatalog,
+        visible_row_units: Option<i32>,
+    ) -> Result<bool, CommandError> {
+        use crate::desktop_layout::{
+            build_template_slots, catalog_entry, template_rail_row_units, template_slot_for,
+            widgets_overlap, DEFAULT_RAIL_ROW_UNITS, WORKBENCH_LAYOUT_EPOCH,
+        };
+        use crate::local_prefs::{LocalPrefKey, LocalPrefs};
+        use crate::projections::Projections;
+
+        let prefs = LocalPrefs::new(self.repo.connection());
+        let epoch: i32 = prefs
+            .get(LocalPrefKey::WorkbenchLayoutEpoch)
+            .map_err(|e| CommandError::UnknownWidgetType(e.to_string()))?
+            .and_then(|v| v.parse().ok())
+            .unwrap_or(0);
+
+        let existing =
+            Projections::new(CoreRepository::new(self.repo.connection())).widget_instances()?;
+
+        if existing.is_empty() {
+            self.seed_desktop_layout_if_empty(catalog)?;
+            prefs
+                .set(
+                    LocalPrefKey::WorkbenchLayoutEpoch,
+                    &WORKBENCH_LAYOUT_EPOCH.to_string(),
+                )
+                .map_err(|e| CommandError::UnknownWidgetType(e.to_string()))?;
+            return Ok(true);
+        }
+
+        let needs_repair = epoch < WORKBENCH_LAYOUT_EPOCH || widgets_overlap(&existing);
+        if !needs_repair {
+            return Ok(false);
+        }
+
+        let rail_row_units = template_rail_row_units(
+            visible_row_units.unwrap_or(DEFAULT_RAIL_ROW_UNITS),
+        );
+
+        for widget in &existing {
+            if let Some(slot) = template_slot_for(&widget.widget_type, rail_row_units) {
+                self.update_widget_layout(WidgetLayoutInput {
+                    id: widget.id,
+                    pos_x: slot.pos_x,
+                    pos_y: slot.pos_y,
+                    width: slot.width,
+                    height: slot.height,
+                })?;
+            }
+        }
+
+        let after_reposition =
+            Projections::new(CoreRepository::new(self.repo.connection())).widget_instances()?;
+        for slot in build_template_slots(rail_row_units) {
+            let has_type = after_reposition
+                .iter()
+                .any(|w| w.widget_type == slot.widget_type);
+            if has_type {
+                continue;
+            }
+            let entry = catalog_entry(catalog, slot.widget_type).ok_or_else(|| {
+                CommandError::UnknownWidgetType(slot.widget_type.to_string())
+            })?;
+            self.create_widget_record(
+                None,
+                &entry.widget_type,
+                slot.pos_x,
+                slot.pos_y,
+                slot.width,
+                slot.height,
+                "{}",
+                true,
+            )?;
+        }
+
+        prefs
+            .set(
+                LocalPrefKey::WorkbenchLayoutEpoch,
+                &WORKBENCH_LAYOUT_EPOCH.to_string(),
+            )
+            .map_err(|e| CommandError::UnknownWidgetType(e.to_string()))?;
+        Ok(true)
+    }
+
     pub fn update_widget_layout(&self, layout: WidgetLayoutInput) -> Result<CoreRecord, CommandError> {
         let existing = self
             .repo
@@ -91,7 +233,7 @@ impl<'a> CommandService<'a> {
             return Err(CommandError::WidgetNotFound(layout.id));
         }
 
-        let (pos_x, width) = clamp_layout(layout.pos_x, layout.width);
+        let (pos_x, width) = clamp_layout_desktop(layout.pos_x, layout.width);
         let height = layout.height.max(1);
         let pos_y = layout.pos_y.max(0);
 
@@ -242,6 +384,8 @@ pub enum CommandError {
     WidgetAlreadyInstalled(String),
     #[error("widget not found: {0}")]
     WidgetNotFound(Uuid),
+    #[error("unknown widget type: {0}")]
+    UnknownWidgetType(String),
 }
 
 #[cfg(test)]

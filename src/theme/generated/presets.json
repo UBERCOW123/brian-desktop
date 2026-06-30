@@ -1,0 +1,1694 @@
+{
+  "darkGreen": {
+    "surfaces": {
+      "colors": [
+        "#FF000000",
+        "#FF0A0A0A",
+        "#FF111111",
+        "#FF1A1A1A"
+      ],
+      "nums": []
+    },
+    "text": {
+      "colors": [
+        "#FFFFFFFF",
+        "#FF666666",
+        "#FF333333"
+      ],
+      "nums": []
+    },
+    "borders": {
+      "colors": [
+        "#FF1A1A1A",
+        "#FF222222"
+      ],
+      "nums": []
+    },
+    "accents": {
+      "colors": [
+        "#FF00FF88",
+        "#FF00FF88",
+        "#FFFF3B30",
+        "#FFFFBB00",
+        "#FFB060FF"
+      ],
+      "nums": []
+    },
+    "glass": {
+      "colors": [
+        "#FFFFFFFF",
+        "#FFFFFFFF"
+      ],
+      "nums": [
+        0.06,
+        0.08,
+        40
+      ]
+    },
+    "progress": {
+      "colors": [
+        "#FF1A1A1A",
+        "#FFFF3B30",
+        "#FFFFBB00",
+        "#FF00FF88",
+        "#FF00FF88",
+        "#FF666666",
+        "#FF333333"
+      ],
+      "nums": []
+    },
+    "metrics": {
+      "colors": [
+        "#FFB060FF",
+        "#FFFFBB00",
+        "#FF00FF88",
+        "#FFFFFFFF",
+        "#1AFFFFFF"
+      ],
+      "nums": []
+    },
+    "status": {
+      "colors": [
+        "#FF2A2A2A",
+        "#FF00FF88",
+        "#FF666666"
+      ],
+      "nums": []
+    },
+    "interactive": {
+      "colors": [
+        "#1AFFFFFF",
+        "#26FFFFFF",
+        "#FF1A1A1A",
+        "#FFFFFFFF"
+      ],
+      "nums": []
+    },
+    "grid": {
+      "colors": [
+        "#0FFFFFFF",
+        "#24FFFFFF",
+        "#29FFFFFF"
+      ],
+      "nums": []
+    }
+  },
+  "darkPurple": {
+    "surfaces": {
+      "colors": [
+        "#FF020004",
+        "#FF0C0A10",
+        "#FF141118",
+        "#FF1C1822"
+      ],
+      "nums": []
+    },
+    "text": {
+      "colors": [
+        "#FFF0ECF6",
+        "#FF6B5F7A",
+        "#FF3D3548"
+      ],
+      "nums": []
+    },
+    "borders": {
+      "colors": [
+        "#FF221E2C",
+        "#FF2A2636"
+      ],
+      "nums": []
+    },
+    "accents": {
+      "colors": [
+        "#FFB060FF",
+        "#FF5BF0A5",
+        "#FFFF4D6A",
+        "#FFFFB84D",
+        "#FF60B0FF"
+      ],
+      "nums": []
+    },
+    "glass": {
+      "colors": [
+        "#FFE8DEFF",
+        "#FFD0B8FF"
+      ],
+      "nums": [
+        0.06,
+        0.08,
+        40
+      ]
+    },
+    "progress": {
+      "colors": [
+        "#FF221E2C",
+        "#FFFF4D6A",
+        "#FFD4A0FF",
+        "#FFB060FF",
+        "#FFB060FF",
+        "#FF6B5F7A",
+        "#FF3D3548"
+      ],
+      "nums": []
+    },
+    "metrics": {
+      "colors": [
+        "#FFB060FF",
+        "#FF8B5CF6",
+        "#FFC084FC",
+        "#FFDDD6FE",
+        "#1AF0ECF6"
+      ],
+      "nums": []
+    },
+    "status": {
+      "colors": [
+        "#FF2A2636",
+        "#FFB060FF",
+        "#FF6B5F7A"
+      ],
+      "nums": []
+    },
+    "interactive": {
+      "colors": [
+        "#1AB060FF",
+        "#26B060FF",
+        "#FF221E2C",
+        "#FFB060FF"
+      ],
+      "nums": []
+    },
+    "grid": {
+      "colors": [
+        "#0FF0ECF6",
+        "#24B060FF",
+        "#29B060FF"
+      ],
+      "nums": []
+    }
+  },
+  "darkAmber": {
+    "surfaces": {
+      "colors": [
+        "#FF040200",
+        "#FF100E08",
+        "#FF181510",
+        "#FF201C15"
+      ],
+      "nums": []
+    },
+    "text": {
+      "colors": [
+        "#FFFFF5E0",
+        "#FF8A7D60",
+        "#FF484030"
+      ],
+      "nums": []
+    },
+    "borders": {
+      "colors": [
+        "#FF2C2818",
+        "#FF363020"
+      ],
+      "nums": []
+    },
+    "accents": {
+      "colors": [
+        "#FFFFBB00",
+        "#FF5BF0A5",
+        "#FFFF4D4D",
+        "#FFFF8C00",
+        "#FF60B0FF"
+      ],
+      "nums": []
+    },
+    "glass": {
+      "colors": [
+        "#FFFFEECC",
+        "#FFFFD580"
+      ],
+      "nums": [
+        0.06,
+        0.08,
+        40
+      ]
+    },
+    "progress": {
+      "colors": [
+        "#FF2C2818",
+        "#FFFF4D4D",
+        "#FFFF8C00",
+        "#FFFFBB00",
+        "#FFFFBB00",
+        "#FF8A7D60",
+        "#FF484030"
+      ],
+      "nums": []
+    },
+    "metrics": {
+      "colors": [
+        "#FFFFBB00",
+        "#FFFF8C00",
+        "#FFFFD166",
+        "#FFFFE8B0",
+        "#1AFFF5E0"
+      ],
+      "nums": []
+    },
+    "status": {
+      "colors": [
+        "#FF363020",
+        "#FFFFBB00",
+        "#FF8A7D60"
+      ],
+      "nums": []
+    },
+    "interactive": {
+      "colors": [
+        "#1AFFBB00",
+        "#26FFBB00",
+        "#FF2C2818",
+        "#FFFFBB00"
+      ],
+      "nums": []
+    },
+    "grid": {
+      "colors": [
+        "#0FFFF5E0",
+        "#24FFBB00",
+        "#29FFBB00"
+      ],
+      "nums": []
+    }
+  },
+  "darkBlue": {
+    "surfaces": {
+      "colors": [
+        "#FF03060A",
+        "#FF0B1118",
+        "#FF121A24",
+        "#FF1A2430"
+      ],
+      "nums": []
+    },
+    "text": {
+      "colors": [
+        "#FFEAF4FF",
+        "#FF72849A",
+        "#FF3F5166"
+      ],
+      "nums": []
+    },
+    "borders": {
+      "colors": [
+        "#FF203044",
+        "#FF29405A"
+      ],
+      "nums": []
+    },
+    "accents": {
+      "colors": [
+        "#FF4DA3FF",
+        "#FF58E1C1",
+        "#FFFF5E7A",
+        "#FFFFC857",
+        "#FF9D8CFF"
+      ],
+      "nums": []
+    },
+    "glass": {
+      "colors": [
+        "#FFDCEEFF",
+        "#FFB8D7FF"
+      ],
+      "nums": [
+        0.06,
+        0.08,
+        40
+      ]
+    },
+    "progress": {
+      "colors": [
+        "#FF203044",
+        "#FFFF5E7A",
+        "#FFFFC857",
+        "#FF4DA3FF",
+        "#FF4DA3FF",
+        "#FF72849A",
+        "#FF3F5166"
+      ],
+      "nums": []
+    },
+    "metrics": {
+      "colors": [
+        "#FF4DA3FF",
+        "#FF6AC6FF",
+        "#FF58E1C1",
+        "#FFD9ECFF",
+        "#1AEAF4FF"
+      ],
+      "nums": []
+    },
+    "status": {
+      "colors": [
+        "#FF29405A",
+        "#FF4DA3FF",
+        "#FF72849A"
+      ],
+      "nums": []
+    },
+    "interactive": {
+      "colors": [
+        "#1A4DA3FF",
+        "#264DA3FF",
+        "#FF203044",
+        "#FF4DA3FF"
+      ],
+      "nums": []
+    },
+    "grid": {
+      "colors": [
+        "#0FEAF4FF",
+        "#244DA3FF",
+        "#294DA3FF"
+      ],
+      "nums": []
+    }
+  },
+  "darkRose": {
+    "surfaces": {
+      "colors": [
+        "#FF090305",
+        "#FF140A0F",
+        "#FF1B1117",
+        "#FF251822"
+      ],
+      "nums": []
+    },
+    "text": {
+      "colors": [
+        "#FFFFEEF4",
+        "#FF9B7482",
+        "#FF5E3E4A"
+      ],
+      "nums": []
+    },
+    "borders": {
+      "colors": [
+        "#FF35202B",
+        "#FF442A37"
+      ],
+      "nums": []
+    },
+    "accents": {
+      "colors": [
+        "#FFFF5C93",
+        "#FF63E6BE",
+        "#FFFF4D4F",
+        "#FFFFB347",
+        "#FF7AA2FF"
+      ],
+      "nums": []
+    },
+    "glass": {
+      "colors": [
+        "#FFFFDCE8",
+        "#FFFFB8CE"
+      ],
+      "nums": [
+        0.06,
+        0.08,
+        40
+      ]
+    },
+    "progress": {
+      "colors": [
+        "#FF35202B",
+        "#FFFF4D4F",
+        "#FFFFB347",
+        "#FFFF5C93",
+        "#FFFF5C93",
+        "#FF9B7482",
+        "#FF5E3E4A"
+      ],
+      "nums": []
+    },
+    "metrics": {
+      "colors": [
+        "#FFFF5C93",
+        "#FFFF8FB1",
+        "#FF63E6BE",
+        "#FFFFDCE8",
+        "#1AFFF0F5"
+      ],
+      "nums": []
+    },
+    "status": {
+      "colors": [
+        "#FF442A37",
+        "#FFFF5C93",
+        "#FF9B7482"
+      ],
+      "nums": []
+    },
+    "interactive": {
+      "colors": [
+        "#1AFF5C93",
+        "#26FF5C93",
+        "#FF35202B",
+        "#FFFF5C93"
+      ],
+      "nums": []
+    },
+    "grid": {
+      "colors": [
+        "#0FFFF0F5",
+        "#24FF5C93",
+        "#29FF5C93"
+      ],
+      "nums": []
+    }
+  },
+  "darkCyan": {
+    "surfaces": {
+      "colors": [
+        "#FF02090A",
+        "#FF091416",
+        "#FF101C1F",
+        "#FF17272A"
+      ],
+      "nums": []
+    },
+    "text": {
+      "colors": [
+        "#FFE8FFFF",
+        "#FF6F9496",
+        "#FF385456"
+      ],
+      "nums": []
+    },
+    "borders": {
+      "colors": [
+        "#FF1F3638",
+        "#FF29484A"
+      ],
+      "nums": []
+    },
+    "accents": {
+      "colors": [
+        "#FF36E0D1",
+        "#FF58E1C1",
+        "#FFFF6868",
+        "#FFFFC857",
+        "#FF63B8FF"
+      ],
+      "nums": []
+    },
+    "glass": {
+      "colors": [
+        "#FFD7FFFF",
+        "#FFA9F5F2"
+      ],
+      "nums": [
+        0.06,
+        0.08,
+        40
+      ]
+    },
+    "progress": {
+      "colors": [
+        "#FF1F3638",
+        "#FFFF6868",
+        "#FFFFC857",
+        "#FF36E0D1",
+        "#FF36E0D1",
+        "#FF6F9496",
+        "#FF385456"
+      ],
+      "nums": []
+    },
+    "metrics": {
+      "colors": [
+        "#FF36E0D1",
+        "#FF63B8FF",
+        "#FF58E1C1",
+        "#FFD7FFFF",
+        "#1AE8FFFF"
+      ],
+      "nums": []
+    },
+    "status": {
+      "colors": [
+        "#FF29484A",
+        "#FF36E0D1",
+        "#FF6F9496"
+      ],
+      "nums": []
+    },
+    "interactive": {
+      "colors": [
+        "#1A36E0D1",
+        "#2636E0D1",
+        "#FF1F3638",
+        "#FF36E0D1"
+      ],
+      "nums": []
+    },
+    "grid": {
+      "colors": [
+        "#0FE8FFFF",
+        "#2436E0D1",
+        "#2936E0D1"
+      ],
+      "nums": []
+    }
+  },
+  "lightGreen": {
+    "surfaces": {
+      "colors": [
+        "#FFF8F8F8",
+        "#FFFFFFFF",
+        "#FFFFFFFF",
+        "#FFF0F0F0"
+      ],
+      "nums": []
+    },
+    "text": {
+      "colors": [
+        "#FF111111",
+        "#FF666666",
+        "#FF999999"
+      ],
+      "nums": []
+    },
+    "borders": {
+      "colors": [
+        "#FFE0E0E0",
+        "#FFEEEEEE"
+      ],
+      "nums": []
+    },
+    "accents": {
+      "colors": [
+        "#FF00CC6A",
+        "#FF00CC6A",
+        "#FFE63B2E",
+        "#FFD4A000",
+        "#FF7040CC"
+      ],
+      "nums": []
+    },
+    "glass": {
+      "colors": [
+        "#FF000000",
+        "#FF000000"
+      ],
+      "nums": [
+        0.04,
+        0.06,
+        40
+      ]
+    },
+    "progress": {
+      "colors": [
+        "#FFE0E0E0",
+        "#FFE63B2E",
+        "#FFD4A000",
+        "#FF00CC6A",
+        "#FF00CC6A",
+        "#FF999999",
+        "#FFBBBBBB"
+      ],
+      "nums": []
+    },
+    "metrics": {
+      "colors": [
+        "#FF7040CC",
+        "#FFD4A000",
+        "#FF00CC6A",
+        "#FF111111",
+        "#14000000"
+      ],
+      "nums": []
+    },
+    "status": {
+      "colors": [
+        "#FFCCCCCC",
+        "#FF00CC6A",
+        "#FF999999"
+      ],
+      "nums": []
+    },
+    "interactive": {
+      "colors": [
+        "#0A000000",
+        "#15000000",
+        "#FFE0E0E0",
+        "#FF111111"
+      ],
+      "nums": []
+    },
+    "grid": {
+      "colors": [
+        "#0A000000",
+        "#2400CC6A",
+        "#2900CC6A"
+      ],
+      "nums": []
+    }
+  },
+  "lightPurple": {
+    "surfaces": {
+      "colors": [
+        "#FFF6F4FA",
+        "#FFFFFFFF",
+        "#FFFFFFFF",
+        "#FFF0ECF6"
+      ],
+      "nums": []
+    },
+    "text": {
+      "colors": [
+        "#FF18101F",
+        "#FF6B5A7A",
+        "#FF9988AA"
+      ],
+      "nums": []
+    },
+    "borders": {
+      "colors": [
+        "#FFE0D8E8",
+        "#FFEEE8F2"
+      ],
+      "nums": []
+    },
+    "accents": {
+      "colors": [
+        "#FF8040CC",
+        "#FF00CC6A",
+        "#FFE6384D",
+        "#FFD4A000",
+        "#FF4080CC"
+      ],
+      "nums": []
+    },
+    "glass": {
+      "colors": [
+        "#FF2D1B4E",
+        "#FF4A2D7A"
+      ],
+      "nums": [
+        0.04,
+        0.06,
+        40
+      ]
+    },
+    "progress": {
+      "colors": [
+        "#FFE0D8E8",
+        "#FFE6384D",
+        "#FFB888E0",
+        "#FF8040CC",
+        "#FF8040CC",
+        "#FF9988AA",
+        "#FFBBAACC"
+      ],
+      "nums": []
+    },
+    "metrics": {
+      "colors": [
+        "#FF8040CC",
+        "#FF6B3FA0",
+        "#FFA06BCC",
+        "#FFC8A0E6",
+        "#14000000"
+      ],
+      "nums": []
+    },
+    "status": {
+      "colors": [
+        "#FFCCC4D6",
+        "#FF8040CC",
+        "#FF9988AA"
+      ],
+      "nums": []
+    },
+    "interactive": {
+      "colors": [
+        "#0A8040CC",
+        "#158040CC",
+        "#FFE0D8E8",
+        "#FF8040CC"
+      ],
+      "nums": []
+    },
+    "grid": {
+      "colors": [
+        "#0A000000",
+        "#248040CC",
+        "#298040CC"
+      ],
+      "nums": []
+    }
+  },
+  "lightAmber": {
+    "surfaces": {
+      "colors": [
+        "#FFFAF6F0",
+        "#FFFFFFFF",
+        "#FFFFFFFF",
+        "#FFF6F0E8"
+      ],
+      "nums": []
+    },
+    "text": {
+      "colors": [
+        "#FF1A1408",
+        "#FF7A6D55",
+        "#FFAA9D85"
+      ],
+      "nums": []
+    },
+    "borders": {
+      "colors": [
+        "#FFE8E0D0",
+        "#FFF2EBE0"
+      ],
+      "nums": []
+    },
+    "accents": {
+      "colors": [
+        "#FFCC9500",
+        "#FF00CC6A",
+        "#FFE63B3B",
+        "#FFCC7500",
+        "#FF4080CC"
+      ],
+      "nums": []
+    },
+    "glass": {
+      "colors": [
+        "#FF4E3B10",
+        "#FF7A5E20"
+      ],
+      "nums": [
+        0.04,
+        0.06,
+        40
+      ]
+    },
+    "progress": {
+      "colors": [
+        "#FFE8E0D0",
+        "#FFE63B3B",
+        "#FFCC7500",
+        "#FFCC9500",
+        "#FFCC9500",
+        "#FFAA9D85",
+        "#FFCCBB99"
+      ],
+      "nums": []
+    },
+    "metrics": {
+      "colors": [
+        "#FFCC9500",
+        "#FFCC7500",
+        "#FFCCB366",
+        "#FFE6D5A0",
+        "#14000000"
+      ],
+      "nums": []
+    },
+    "status": {
+      "colors": [
+        "#FFD6CEC0",
+        "#FFCC9500",
+        "#FFAA9D85"
+      ],
+      "nums": []
+    },
+    "interactive": {
+      "colors": [
+        "#0ACC9500",
+        "#15CC9500",
+        "#FFE8E0D0",
+        "#FFCC9500"
+      ],
+      "nums": []
+    },
+    "grid": {
+      "colors": [
+        "#0A000000",
+        "#24CC9500",
+        "#29CC9500"
+      ],
+      "nums": []
+    }
+  },
+  "lightBlue": {
+    "surfaces": {
+      "colors": [
+        "#FFF2F7FC",
+        "#FFFFFFFF",
+        "#FFFFFFFF",
+        "#FFEAF1F8"
+      ],
+      "nums": []
+    },
+    "text": {
+      "colors": [
+        "#FF102033",
+        "#FF64758A",
+        "#FF94A4B8"
+      ],
+      "nums": []
+    },
+    "borders": {
+      "colors": [
+        "#FFD8E3EF",
+        "#FFE8F0F7"
+      ],
+      "nums": []
+    },
+    "accents": {
+      "colors": [
+        "#FF2B7CD9",
+        "#FF00B894",
+        "#FFE2526B",
+        "#FFD9A21B",
+        "#FF5D6DFF"
+      ],
+      "nums": []
+    },
+    "glass": {
+      "colors": [
+        "#FF183A60",
+        "#FF2B5A8A"
+      ],
+      "nums": [
+        0.04,
+        0.06,
+        40
+      ]
+    },
+    "progress": {
+      "colors": [
+        "#FFD8E3EF",
+        "#FFE2526B",
+        "#FFD9A21B",
+        "#FF2B7CD9",
+        "#FF2B7CD9",
+        "#FF94A4B8",
+        "#FFB5C3D1"
+      ],
+      "nums": []
+    },
+    "metrics": {
+      "colors": [
+        "#FF2B7CD9",
+        "#FF5AA7F4",
+        "#FF00B894",
+        "#FFCFE5FF",
+        "#14000000"
+      ],
+      "nums": []
+    },
+    "status": {
+      "colors": [
+        "#FFC5D4E3",
+        "#FF2B7CD9",
+        "#FF94A4B8"
+      ],
+      "nums": []
+    },
+    "interactive": {
+      "colors": [
+        "#0A2B7CD9",
+        "#152B7CD9",
+        "#FFD8E3EF",
+        "#FF2B7CD9"
+      ],
+      "nums": []
+    },
+    "grid": {
+      "colors": [
+        "#0A000000",
+        "#242B7CD9",
+        "#292B7CD9"
+      ],
+      "nums": []
+    }
+  },
+  "lightRose": {
+    "surfaces": {
+      "colors": [
+        "#FFFCF3F7",
+        "#FFFFFFFF",
+        "#FFFFFFFF",
+        "#FFF7EBF1"
+      ],
+      "nums": []
+    },
+    "text": {
+      "colors": [
+        "#FF2D1420",
+        "#FF866473",
+        "#FFB79AAA"
+      ],
+      "nums": []
+    },
+    "borders": {
+      "colors": [
+        "#FFECD8E2",
+        "#FFF5EAF0"
+      ],
+      "nums": []
+    },
+    "accents": {
+      "colors": [
+        "#FFD9467A",
+        "#FF00B894",
+        "#FFE25252",
+        "#FFD99A38",
+        "#FF5B88FF"
+      ],
+      "nums": []
+    },
+    "glass": {
+      "colors": [
+        "#FF61253E",
+        "#FF8D3B60"
+      ],
+      "nums": [
+        0.04,
+        0.06,
+        40
+      ]
+    },
+    "progress": {
+      "colors": [
+        "#FFECD8E2",
+        "#FFE25252",
+        "#FFD99A38",
+        "#FFD9467A",
+        "#FFD9467A",
+        "#FFB79AAA",
+        "#FFD1B8C4"
+      ],
+      "nums": []
+    },
+    "metrics": {
+      "colors": [
+        "#FFD9467A",
+        "#FFFF8FAE",
+        "#FF00B894",
+        "#FFFFD8E5",
+        "#14000000"
+      ],
+      "nums": []
+    },
+    "status": {
+      "colors": [
+        "#FFD9C4CE",
+        "#FFD9467A",
+        "#FFB79AAA"
+      ],
+      "nums": []
+    },
+    "interactive": {
+      "colors": [
+        "#0AD9467A",
+        "#15D9467A",
+        "#FFECD8E2",
+        "#FFD9467A"
+      ],
+      "nums": []
+    },
+    "grid": {
+      "colors": [
+        "#0A000000",
+        "#24D9467A",
+        "#29D9467A"
+      ],
+      "nums": []
+    }
+  },
+  "lightCyan": {
+    "surfaces": {
+      "colors": [
+        "#FFF1FAFA",
+        "#FFFFFFFF",
+        "#FFFFFFFF",
+        "#FFE7F4F4"
+      ],
+      "nums": []
+    },
+    "text": {
+      "colors": [
+        "#FF0F2628",
+        "#FF5F8184",
+        "#FF91B1B3"
+      ],
+      "nums": []
+    },
+    "borders": {
+      "colors": [
+        "#FFD6E8E8",
+        "#FFE7F4F4"
+      ],
+      "nums": []
+    },
+    "accents": {
+      "colors": [
+        "#FF0FAEA3",
+        "#FF0FAEA3",
+        "#FFE35D5D",
+        "#FFD9A21B",
+        "#FF3D8BFF"
+      ],
+      "nums": []
+    },
+    "glass": {
+      "colors": [
+        "#FF134D50",
+        "#FF1D7377"
+      ],
+      "nums": [
+        0.04,
+        0.06,
+        40
+      ]
+    },
+    "progress": {
+      "colors": [
+        "#FFD6E8E8",
+        "#FFE35D5D",
+        "#FFD9A21B",
+        "#FF0FAEA3",
+        "#FF0FAEA3",
+        "#FF91B1B3",
+        "#FFBAD1D3"
+      ],
+      "nums": []
+    },
+    "metrics": {
+      "colors": [
+        "#FF0FAEA3",
+        "#FF3D8BFF",
+        "#FF52C9BE",
+        "#FFC8F0EE",
+        "#14000000"
+      ],
+      "nums": []
+    },
+    "status": {
+      "colors": [
+        "#FFC2D8D8",
+        "#FF0FAEA3",
+        "#FF91B1B3"
+      ],
+      "nums": []
+    },
+    "interactive": {
+      "colors": [
+        "#0A0FAEA3",
+        "#150FAEA3",
+        "#FFD6E8E8",
+        "#FF0FAEA3"
+      ],
+      "nums": []
+    },
+    "grid": {
+      "colors": [
+        "#0A000000",
+        "#240FAEA3",
+        "#290FAEA3"
+      ],
+      "nums": []
+    }
+  },
+  "darkSlate": {
+    "surfaces": {
+      "colors": [
+        "#FF000000",
+        "#FF1C1C1E",
+        "#FF2C2C2E",
+        "#FF3A3A3C"
+      ],
+      "nums": []
+    },
+    "text": {
+      "colors": [
+        "#FFFFFFFF",
+        "#FF8E8E93",
+        "#FF636366"
+      ],
+      "nums": []
+    },
+    "borders": {
+      "colors": [
+        "#FF38383A",
+        "#FF2C2C2E"
+      ],
+      "nums": []
+    },
+    "accents": {
+      "colors": [
+        "#FFF5F5F7",
+        "#FF32D74B",
+        "#FFFF453A",
+        "#FFFFD60A",
+        "#FF64D2FF"
+      ],
+      "nums": []
+    },
+    "glass": {
+      "colors": [
+        "#FFFFFFFF",
+        "#FFFFFFFF"
+      ],
+      "nums": [
+        0.04,
+        0.06,
+        32
+      ]
+    },
+    "progress": {
+      "colors": [
+        "#FF38383A",
+        "#FFFF453A",
+        "#FFFFD60A",
+        "#FFF5F5F7",
+        "#FFF5F5F7",
+        "#FF8E8E93",
+        "#FF636366"
+      ],
+      "nums": []
+    },
+    "metrics": {
+      "colors": [
+        "#FF636366",
+        "#FF8E8E93",
+        "#FFAEAEB2",
+        "#FFF5F5F7",
+        "#14FFFFFF"
+      ],
+      "nums": []
+    },
+    "status": {
+      "colors": [
+        "#FF48484A",
+        "#FFF5F5F7",
+        "#FF8E8E93"
+      ],
+      "nums": []
+    },
+    "interactive": {
+      "colors": [
+        "#14FFFFFF",
+        "#1FFFFFFF",
+        "#FF38383A",
+        "#FFF5F5F7"
+      ],
+      "nums": []
+    },
+    "grid": {
+      "colors": [
+        "#0AFFFFFF",
+        "#16FFFFFF",
+        "#24FFFFFF"
+      ],
+      "nums": []
+    }
+  },
+  "darkObsidian": {
+    "surfaces": {
+      "colors": [
+        "#FF050608",
+        "#FF0D0F12",
+        "#FF13161A",
+        "#FF1A1D22"
+      ],
+      "nums": []
+    },
+    "text": {
+      "colors": [
+        "#FFF5F7FA",
+        "#FF969DA8",
+        "#FF555C67"
+      ],
+      "nums": []
+    },
+    "borders": {
+      "colors": [
+        "#FF22262D",
+        "#FF2B3038"
+      ],
+      "nums": []
+    },
+    "accents": {
+      "colors": [
+        "#FF66D6C2",
+        "#FF66D6C2",
+        "#FFFF7474",
+        "#FFFFC97A",
+        "#FF79B9FF"
+      ],
+      "nums": []
+    },
+    "glass": {
+      "colors": [
+        "#FFFFFFFF",
+        "#FFFFFFFF"
+      ],
+      "nums": [
+        0.035,
+        0.05,
+        40
+      ]
+    },
+    "progress": {
+      "colors": [
+        "#FF20242A",
+        "#FFFF7474",
+        "#FFFFC97A",
+        "#FF66D6C2",
+        "#FF66D6C2",
+        "#FF969DA8",
+        "#FF555C67"
+      ],
+      "nums": []
+    },
+    "metrics": {
+      "colors": [
+        "#FF66D6C2",
+        "#FF79B9FF",
+        "#FF8AECCF",
+        "#FFD5FFF6",
+        "#1AEFFCF9"
+      ],
+      "nums": []
+    },
+    "status": {
+      "colors": [
+        "#FF272C34",
+        "#FF66D6C2",
+        "#FF969DA8"
+      ],
+      "nums": []
+    },
+    "interactive": {
+      "colors": [
+        "#10FFFFFF",
+        "#18FFFFFF",
+        "#FF22262D",
+        "#FF66D6C2"
+      ],
+      "nums": []
+    },
+    "grid": {
+      "colors": [
+        "#0AFFFFFF",
+        "#14FFFFFF",
+        "#1E66D6C2"
+      ],
+      "nums": []
+    }
+  },
+  "darkLinen": {
+    "surfaces": {
+      "colors": [
+        "#FF050608",
+        "#FF0D0F12",
+        "#FF13161A",
+        "#FF1A1D22"
+      ],
+      "nums": []
+    },
+    "text": {
+      "colors": [
+        "#FFF5F4EF",
+        "#FF9D998F",
+        "#FF615C53"
+      ],
+      "nums": []
+    },
+    "borders": {
+      "colors": [
+        "#FF26231D",
+        "#FF302C25"
+      ],
+      "nums": []
+    },
+    "accents": {
+      "colors": [
+        "#FFE9D3A5",
+        "#FF7FD7B5",
+        "#FFFF7C6B",
+        "#FFFFCA74",
+        "#FFA9B8FF"
+      ],
+      "nums": []
+    },
+    "glass": {
+      "colors": [
+        "#FFFFFFFF",
+        "#FFFFFFFF"
+      ],
+      "nums": [
+        0.032,
+        0.045,
+        40
+      ]
+    },
+    "progress": {
+      "colors": [
+        "#FF23201B",
+        "#FFFF7C6B",
+        "#FFFFCA74",
+        "#FFE9D3A5",
+        "#FFE9D3A5",
+        "#FF9D998F",
+        "#FF615C53"
+      ],
+      "nums": []
+    },
+    "metrics": {
+      "colors": [
+        "#FFE9D3A5",
+        "#FFA9B8FF",
+        "#FF7FD7B5",
+        "#FFFFF2D8",
+        "#1AFFF8EC"
+      ],
+      "nums": []
+    },
+    "status": {
+      "colors": [
+        "#FF2E2A24",
+        "#FFE9D3A5",
+        "#FF9D998F"
+      ],
+      "nums": []
+    },
+    "interactive": {
+      "colors": [
+        "#0EFFFFFF",
+        "#16FFFFFF",
+        "#FF26231D",
+        "#FFE9D3A5"
+      ],
+      "nums": []
+    },
+    "grid": {
+      "colors": [
+        "#09FFFFFF",
+        "#12FFFFFF",
+        "#1CE9D3A5"
+      ],
+      "nums": []
+    }
+  },
+  "lightSlate": {
+    "surfaces": {
+      "colors": [
+        "#FFF2F2F7",
+        "#FFFFFFFF",
+        "#FFFFFFFF",
+        "#FFE5E5EA"
+      ],
+      "nums": []
+    },
+    "text": {
+      "colors": [
+        "#FF000000",
+        "#FF3C3C43",
+        "#FF8E8E93"
+      ],
+      "nums": []
+    },
+    "borders": {
+      "colors": [
+        "#FFC6C6C8",
+        "#FFE5E5EA"
+      ],
+      "nums": []
+    },
+    "accents": {
+      "colors": [
+        "#FF1C1C1E",
+        "#FF34C759",
+        "#FFFF3B30",
+        "#FFFF9500",
+        "#FF007AFF"
+      ],
+      "nums": []
+    },
+    "glass": {
+      "colors": [
+        "#FF000000",
+        "#FF000000"
+      ],
+      "nums": [
+        0.04,
+        0.06,
+        32
+      ]
+    },
+    "progress": {
+      "colors": [
+        "#FFE5E5EA",
+        "#FFFF3B30",
+        "#FFFF9500",
+        "#FF1C1C1E",
+        "#FF1C1C1E",
+        "#FF8E8E93",
+        "#FFC7C7CC"
+      ],
+      "nums": []
+    },
+    "metrics": {
+      "colors": [
+        "#FF8E8E93",
+        "#FFAEAEB2",
+        "#FF636366",
+        "#FF1C1C1E",
+        "#14000000"
+      ],
+      "nums": []
+    },
+    "status": {
+      "colors": [
+        "#FFC7C7CC",
+        "#FF1C1C1E",
+        "#FF8E8E93"
+      ],
+      "nums": []
+    },
+    "interactive": {
+      "colors": [
+        "#0A000000",
+        "#12000000",
+        "#FFC6C6C8",
+        "#FF1C1C1E"
+      ],
+      "nums": []
+    },
+    "grid": {
+      "colors": [
+        "#0A000000",
+        "#12000000",
+        "#24000000"
+      ],
+      "nums": []
+    }
+  },
+  "lightObsidian": {
+    "surfaces": {
+      "colors": [
+        "#FFF5F5F6",
+        "#FFFFFFFF",
+        "#FFFFFFFF",
+        "#FFF0F1F3"
+      ],
+      "nums": []
+    },
+    "text": {
+      "colors": [
+        "#FF17181C",
+        "#FF666B75",
+        "#FF9A9FA8"
+      ],
+      "nums": []
+    },
+    "borders": {
+      "colors": [
+        "#FFDEDFE3",
+        "#FFEAECEF"
+      ],
+      "nums": []
+    },
+    "accents": {
+      "colors": [
+        "#FF319B89",
+        "#FF319B89",
+        "#FFD85B5B",
+        "#FFC78F2D",
+        "#FF4A8BD5"
+      ],
+      "nums": []
+    },
+    "glass": {
+      "colors": [
+        "#FF000000",
+        "#FF000000"
+      ],
+      "nums": [
+        0.04,
+        0.06,
+        40
+      ]
+    },
+    "progress": {
+      "colors": [
+        "#FFDEDFE3",
+        "#FFD85B5B",
+        "#FFC78F2D",
+        "#FF319B89",
+        "#FF319B89",
+        "#FF9A9FA8",
+        "#FFC1C4CB"
+      ],
+      "nums": []
+    },
+    "metrics": {
+      "colors": [
+        "#FF319B89",
+        "#FF4A8BD5",
+        "#FF5EC3A7",
+        "#FFD8F0EA",
+        "#14000000"
+      ],
+      "nums": []
+    },
+    "status": {
+      "colors": [
+        "#FFD1D4DA",
+        "#FF319B89",
+        "#FF9A9FA8"
+      ],
+      "nums": []
+    },
+    "interactive": {
+      "colors": [
+        "#0A000000",
+        "#12000000",
+        "#FFDEDFE3",
+        "#FF319B89"
+      ],
+      "nums": []
+    },
+    "grid": {
+      "colors": [
+        "#0A000000",
+        "#12000000",
+        "#1E319B89"
+      ],
+      "nums": []
+    }
+  },
+  "lightLinen": {
+    "surfaces": {
+      "colors": [
+        "#FFF6F4F0",
+        "#FFFFFFFF",
+        "#FFFFFFFF",
+        "#FFF1EEE8"
+      ],
+      "nums": []
+    },
+    "text": {
+      "colors": [
+        "#FF201C17",
+        "#FF72675B",
+        "#FFA29689"
+      ],
+      "nums": []
+    },
+    "borders": {
+      "colors": [
+        "#FFE1DACE",
+        "#FFECE6DC"
+      ],
+      "nums": []
+    },
+    "accents": {
+      "colors": [
+        "#FFB79A67",
+        "#FF2E9E7B",
+        "#FFD35F4E",
+        "#FFC5892A",
+        "#FF7182D8"
+      ],
+      "nums": []
+    },
+    "glass": {
+      "colors": [
+        "#FF000000",
+        "#FF000000"
+      ],
+      "nums": [
+        0.04,
+        0.06,
+        40
+      ]
+    },
+    "progress": {
+      "colors": [
+        "#FFE1DACE",
+        "#FFD35F4E",
+        "#FFC5892A",
+        "#FFB79A67",
+        "#FFB79A67",
+        "#FFA29689",
+        "#FFC7BCAE"
+      ],
+      "nums": []
+    },
+    "metrics": {
+      "colors": [
+        "#FFB79A67",
+        "#FF7182D8",
+        "#FF2E9E7B",
+        "#FFEFE2CC",
+        "#14000000"
+      ],
+      "nums": []
+    },
+    "status": {
+      "colors": [
+        "#FFD6CDC0",
+        "#FFB79A67",
+        "#FFA29689"
+      ],
+      "nums": []
+    },
+    "interactive": {
+      "colors": [
+        "#0A000000",
+        "#12000000",
+        "#FFE1DACE",
+        "#FFB79A67"
+      ],
+      "nums": []
+    },
+    "grid": {
+      "colors": [
+        "#0A000000",
+        "#12000000",
+        "#1EB79A67"
+      ],
+      "nums": []
+    }
+  }
+}

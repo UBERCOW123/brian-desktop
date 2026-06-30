@@ -56,6 +56,15 @@ pub fn run() {
             commands::install_widget,
             commands::update_widget_layouts,
             commands::remove_widget,
+            commands::seed_desktop_layout_if_empty,
+            commands::reset_desktop_layout,
+            commands::repair_workbench_layout,
+            commands::get_ui_prefs,
+            commands::set_ui_prefs,
+            commands::get_shell_layout,
+            commands::set_shell_layout,
+            commands::get_assist_prefs,
+            commands::set_assist_prefs,
         ])
         .run(tauri::generate_context!())
         .expect("error while running Brian Desktop");

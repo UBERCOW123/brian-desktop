@@ -26,6 +26,10 @@ impl<'a> CoreRepository<'a> {
         Self { conn }
     }
 
+    pub fn connection(&self) -> &'a Connection {
+        self.conn
+    }
+
     pub fn get_record(&self, id: Uuid) -> Result<Option<CoreRecord>, RepositoryError> {
         let mut stmt = self.conn.prepare(
             "SELECT id, kind, title, summary, status, payload_json, source_record_id,

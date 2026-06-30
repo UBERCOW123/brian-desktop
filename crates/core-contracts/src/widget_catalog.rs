@@ -1,7 +1,9 @@
-//! Widget catalog parsed from `WIDGET_AGENT_METADATA_SEED.json`.
+//! Widget catalog parsed from mobile seed + desktop shell extensions.
 
 use crate::paths::{load_widget_seed, ContractError};
 use serde::{Deserialize, Serialize};
+
+const DESKTOP_CATALOG_JSON: &str = include_str!("../desktop_widget_catalog.json");
 
 #[derive(Debug, Clone, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -22,7 +24,7 @@ pub struct WidgetSize {
 #[derive(Debug, Clone, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct WidgetCatalogEntry {
-    #[serde(rename = "type")]
+    #[serde(rename(serialize = "widgetType", deserialize = "type"))]
     pub widget_type: String,
     pub display_name: String,
     #[serde(default)]
@@ -52,7 +54,16 @@ impl WidgetCatalogEntry {
 impl WidgetCatalog {
     pub fn load() -> Result<Self, ContractError> {
         let seed = load_widget_seed()?;
-        serde_json::from_value(seed).map_err(|source| ContractError::InvalidWidgetSeed { source })
+        let mut catalog: WidgetCatalog =
+            serde_json::from_value(seed).map_err(|source| ContractError::InvalidWidgetSeed { source })?;
+        let desktop: WidgetCatalog = serde_json::from_str(DESKTOP_CATALOG_JSON)
+            .map_err(|source| ContractError::InvalidWidgetSeed { source })?;
+        for entry in desktop.widgets {
+            if catalog.find(&entry.widget_type).is_none() {
+                catalog.widgets.push(entry);
+            }
+        }
+        Ok(catalog)
     }
 
     pub fn widget_types(&self) -> Vec<&str> {
@@ -74,5 +85,22 @@ mod tests {
         assert!(catalog.schema_version >= 1);
         assert!(!catalog.widgets.is_empty());
         assert!(catalog.find("clock_widget").is_some());
+    }
+
+    #[test]
+    fn serializes_widget_type_as_widget_type_camel_case() {
+        let catalog = WidgetCatalog::load().expect("catalog");
+        let entry = catalog.find("clock_widget").expect("clock_widget");
+        let json = serde_json::to_value(entry).expect("serialize");
+        assert_eq!(json.get("widgetType").and_then(|v| v.as_str()), Some("clock_widget"));
+        assert!(json.get("type").is_none());
+    }
+
+    #[test]
+    fn loads_desktop_shell_widgets() {
+        let catalog = WidgetCatalog::load().expect("catalog");
+        assert!(catalog.find("desktop_assist").is_some());
+        assert!(catalog.find("desktop_timeline").is_some());
+        assert!(catalog.find("desktop_sync").is_some());
     }
 }

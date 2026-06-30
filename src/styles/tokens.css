@@ -1,0 +1,83 @@
+/* Structural tokens — colors applied at runtime by theme-manager.ts */
+:root {
+  color-scheme: dark;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  --cell: 44px;
+  --grid-gap: 8px;
+  --grid-columns: 8;
+
+  --font-display-lg: 900 72px/0.9 "Inter", sans-serif;
+  --font-display-md: 900 48px/0.95 "Inter", sans-serif;
+  --font-headline-lg: 800 28px/1.2 "Inter", sans-serif;
+  --font-headline-md: 700 20px/1.25 "Inter", sans-serif;
+  --font-body-lg: 500 16px/1.45 "Inter", sans-serif;
+  --font-body-md: 400 14px/1.5 "Inter", sans-serif;
+  --font-body-sm: 400 12px/1.45 "Inter", sans-serif;
+  --font-label-lg: 700 13px/1.3 "Inter", sans-serif;
+  --font-label-sm: 600 10px/1.3 "Inter", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--surface-scaffold, #000);
+  color: var(--text-primary, #fff);
+  overflow: hidden;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-height: 0;
+}
+
+.app-shell-host {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.error {
+  color: var(--accent-danger, #ff3b30);
+}
+
+.empty-state {
+  color: var(--text-secondary);
+  font: var(--font-body-md);
+  padding: var(--space-md);
+}
+
+code {
+  font-family: ui-monospace, "Cascadia Code", monospace;
+  font-size: 0.85em;
+}

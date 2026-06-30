@@ -7,6 +7,18 @@ use thiserror::Error;
 pub enum LocalPrefKey {
     CloudDeviceId,
     SyncLastPullAt,
+    /// Mirrors mobile SharedPreferences `theme_mode` (`dark` | `light` | `system`).
+    ThemeMode,
+    /// Mirrors mobile SharedPreferences `accent_palette`.
+    AccentPalette,
+    /// Serialized dockview layout JSON for the desktop shell.
+    ShellLayout,
+    /// When `true`, widget grid drag/resize is disabled.
+    LayoutLocked,
+    /// Serialized Brian Assist UI prefs (model, mode, tools level).
+    AssistPrefs,
+    /// Workbench grid template epoch (see `desktop_layout::WORKBENCH_LAYOUT_EPOCH`).
+    WorkbenchLayoutEpoch,
 }
 
 impl LocalPrefKey {
@@ -14,6 +26,12 @@ impl LocalPrefKey {
         match self {
             Self::CloudDeviceId => "core_cloud_device_id",
             Self::SyncLastPullAt => "core_sync_last_pull_at",
+            Self::ThemeMode => "theme_mode",
+            Self::AccentPalette => "accent_palette",
+            Self::ShellLayout => "desktop_shell_layout",
+            Self::LayoutLocked => "desktop_layout_locked",
+            Self::AssistPrefs => "desktop_assist_prefs",
+            Self::WorkbenchLayoutEpoch => "workbench_layout_epoch",
         }
     }
 }

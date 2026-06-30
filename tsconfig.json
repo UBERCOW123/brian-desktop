@@ -13,7 +13,14 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "jsx": "react-jsx",
+    "paths": {
+      "@tremor/*": ["./vendor/tremor/*"],
+      "@ui": ["./src/ui"],
+      "@ui/*": ["./src/ui/*"]
+    }
   },
-  "include": ["src"]
+  "include": ["src", "vendor/tremor/components", "vendor/tremor/utils"],
+  "exclude": ["vendor/tremor/**/*.md", "vendor/tremor/**/changelog.md", "src/**/*.test.ts"]
 }

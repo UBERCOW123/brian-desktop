@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "generatedFrom": "brian-desktop shell widgets",
+  "widgets": [
+    {
+      "type": "desktop_assist",
+      "displayName": "Brian Assist",
+      "category": "shell",
+      "surfaceKind": "panel",
+      "allowMultiple": false,
+      "defaultSize": { "width": 4, "height": 8 }
+    },
+    {
+      "type": "desktop_timeline",
+      "displayName": "Timeline",
+      "category": "shell",
+      "surfaceKind": "panel",
+      "allowMultiple": false,
+      "defaultSize": { "width": 2, "height": 8 }
+    },
+    {
+      "type": "desktop_sync",
+      "displayName": "Sync",
+      "category": "shell",
+      "surfaceKind": "panel",
+      "allowMultiple": false,
+      "defaultSize": { "width": 2, "height": 2 }
+    }
+  ]
+}

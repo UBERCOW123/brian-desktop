@@ -1,6 +1,7 @@
 //! SQLite schema parity with CORE mobile `DatabaseHelper` (schema v14 target).
 
 mod commands;
+mod desktop_layout;
 mod layout;
 mod local_prefs;
 mod projections;
@@ -9,6 +10,9 @@ mod row_mapping;
 mod schema;
 
 pub use commands::{CommandError, CommandService, WidgetLayoutInput};
+pub use desktop_layout::{
+    build_template_slots, desktop_default_layout, template_rail_row_units, WORKBENCH_LAYOUT_EPOCH,
+};
 pub use layout::COLUMN_COUNT;
 pub use local_prefs::{LocalPrefError, LocalPrefKey, LocalPrefs};
 pub use projections::{
