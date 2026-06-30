@@ -1,0 +1,28 @@
+# Rust / Tauri
+/target/
+/src-tauri/target/
+**/*.rs.bk
+
+# Local env & secrets
+.env
+.env.*
+!.env.example
+
+# Local SQLite (mirror of CORE mobile schema)
+*.db
+*.db-shm
+*.db-wal
+core_os.db
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Tauri build artifacts
+/src-tauri/gen/
