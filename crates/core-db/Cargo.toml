@@ -1,0 +1,16 @@
+[package]
+name = "core-db"
+description = "Local SQLite mirror of CORE mobile schema (core_records, outbox, agent harness)"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+rusqlite = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+
+[dev-dependencies]
+tempfile = "3"

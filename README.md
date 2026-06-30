@@ -2,66 +2,57 @@
 
 Rust/Tauri desktop companion for [CORE](https://github.com/UBERCOW123/core). Consumes the **same Supabase project** as mobile; **migrations and schema live in core**, not here.
 
-## Contract baseline
+## Quick start
 
-Shared sync rules, data model, widget catalog, and Supabase migrations are vendored from core:
+```powershell
+git clone --recurse-submodules https://github.com/UBERCOW123/brian-desktop.git
+cd brian-desktop
+.\scripts\bootstrap.ps1
+npm run tauri dev
+```
+
+See [docs/SETUP.md](docs/SETUP.md) for prerequisites and [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for crate layout.
+
+**Agents:** read [`AGENTS.md`](AGENTS.md) first — explains the two-repo setup and what *not* to pull from `vendor/core`.
+
+## Layout
+
+```
+brian-desktop/
+├── src/                    # Vite + TypeScript UI
+├── src-tauri/              # Tauri 2 shell
+├── crates/
+│   ├── core-contracts/     # vendor/core doc paths + widget seed loader
+│   ├── core-db/            # SQLite schema mirror (mobile v14)
+│   ├── core-sync/          # push/pull traits (SYNC_STRATEGY.md)
+│   └── core-mcp/           # ASSIST + OS tool stubs
+├── vendor/core/            # git submodule → core (read-only)
+├── contracts/              # reserved for generated types
+└── docs/
+```
+
+## Contract baseline
 
 | What | Path in submodule |
 |------|-------------------|
 | Sync rules | `vendor/core/docs/agent/SYNC_STRATEGY.md` |
-| Record kinds / payloads | `vendor/core/docs/agent/CORE_DATA_MODEL.md` |
+| Record kinds | `vendor/core/docs/agent/CORE_DATA_MODEL.md` |
 | Widget catalog | `vendor/core/docs/agent/WIDGET_AGENT_METADATA_SEED.json` |
 | Schema (reference) | `vendor/core/supabase/migrations/` |
-| Supabase env template | `vendor/core/supabase.local.json.example` |
 
-Pin is recorded in [`CONTRACTS_VERSION`](CONTRACTS_VERSION). Bump the submodule when mobile schema or contracts change:
-
-```bash
-cd vendor/core
-git fetch --tags
-git checkout core-contract-v0.2   # or target commit
-cd ../..
-git add vendor/core CONTRACTS_VERSION
-git commit -m "Bump core contracts to core-contract-v0.2"
-```
-
-Clone with contracts:
-
-```bash
-git clone --recurse-submodules https://github.com/UBERCOW123/brian-desktop.git
-```
-
-## Submodule setup
-
-```bash
-git submodule update --init --recursive
-```
+Pin: [`CONTRACTS_VERSION`](CONTRACTS_VERSION). Bump submodule when mobile changes schema.
 
 ## Env / secrets
 
-Copy `vendor/core/supabase.local.json.example` values into a local `.env` (gitignored):
+Copy `.env.example` → `.env` (same Supabase project as mobile). Never commit API keys or `service_role`.
 
-| Variable | Notes |
-|----------|-------|
-| `SUPABASE_URL` | Same project as mobile |
-| `SUPABASE_ANON_KEY` | Anon/publishable key only — never `service_role` |
-| OpenRouter BYOK | Desktop-only user setting |
+Desktop OAuth redirect (when wired): `com.celix.core.desktop://login-callback`
 
-Desktop OAuth redirect (register in Supabase when wiring auth): `com.celix.core.desktop://login-callback`
+## Status
 
-## What lives where
+**Scaffold complete** — workspace compiles, SQLite opens, contracts resolve. Feature work follows the desktop companion implementation plan (sync, dashboard, Work Room, OS agent).
 
-- **core** — Flutter mobile, Supabase migrations, edge functions, agent docs
-- **brian-desktop** — Tauri app, local SQLite mirror, sync client, Work Room, OS-level agent tools
+## What not to do
 
-Do not duplicate Supabase SQL in this repo. New record kinds require a migration in core first.
-
-## Layout (planned)
-
-```
-brian-desktop/
-├── src-tauri/          # Tauri shell
-├── crates/             # sync, db, mcp (optional workspace crates)
-├── vendor/core/        # git submodule → core contracts + migrations (read-only)
-└── contracts/          # reserved for generated types / CI copies if needed
-```
+- Don't add Cargo.toml to `core` or fork migrations into desktop
+- Don't ship desktop-only `core_records` kinds without a core migration first

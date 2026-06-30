@@ -1,0 +1,66 @@
+:root {
+  color-scheme: dark;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: #0f1115;
+  color: #e8eaed;
+}
+
+body {
+  margin: 0;
+}
+
+.shell {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+header h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.subtitle {
+  margin: 0 0 1.5rem;
+  color: #9aa0a6;
+}
+
+.card {
+  background: #1a1d23;
+  border: 1px solid #2a2f38;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.card.muted {
+  color: #b0b6be;
+}
+
+.card ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: 0.35rem 1rem;
+  margin: 0;
+}
+
+code {
+  font-size: 0.85rem;
+  word-break: break-all;
+}
+
+.hint {
+  margin: 1rem 0 0;
+  font-size: 0.9rem;
+  color: #7a8088;
+}
+
+.error {
+  color: #f28b82;
+}

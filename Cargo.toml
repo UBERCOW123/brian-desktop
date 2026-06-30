@@ -1,0 +1,33 @@
+[workspace]
+resolver = "2"
+members = [
+    "src-tauri",
+    "crates/core-db",
+    "crates/core-contracts",
+    "crates/core-sync",
+    "crates/core-mcp",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.77"
+license = "MIT"
+authors = ["Celix"]
+
+[workspace.dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+rusqlite = { version = "0.32", features = ["bundled"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "sync"] }
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+
+core-contracts = { path = "crates/core-contracts" }
+core-db = { path = "crates/core-db" }
+core-sync = { path = "crates/core-sync" }
+core-mcp = { path = "crates/core-mcp" }
