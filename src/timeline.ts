@@ -25,10 +25,6 @@ export async function renderTimeline(container: HTMLElement): Promise<void> {
   const header = renderHomeHeader({
     greeting: dashboardGreeting(session.email),
     momentumLine: momentumLine(tasks),
-    onQuickAdd: async (title) => {
-      await invoke("create_task", { title });
-      window.dispatchEvent(new CustomEvent("core:refresh"));
-    },
   });
   const headerHost = document.createElement("div");
   headerHost.className = "home-header-host";

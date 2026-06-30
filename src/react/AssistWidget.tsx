@@ -1,4 +1,5 @@
 import { useEffect, useSyncExternalStore } from "react";
+import { createTaskFromAssist, refreshWorkbench } from "../api/companion";
 import { saveAssistPrefs } from "../theme/theme-manager";
 import { assistState, type AssistActionPreview } from "../assist/assist-state";
 import {
@@ -23,6 +24,18 @@ function useAssistState() {
 }
 
 function PreviewCard({ preview }: { preview: AssistActionPreview }) {
+  const confirm = async () => {
+    const title = String(preview.arguments.displayTitle ?? preview.collapsed_line);
+    try {
+      await createTaskFromAssist(title);
+      assistState.addMessage("assistant", `Created task: ${title}`);
+      assistState.setPreview(null);
+      refreshWorkbench();
+    } catch (err) {
+      assistState.addMessage("assistant", `Failed to create task: ${String(err)}`);
+    }
+  };
+
   return (
     <BrianCard glass="elevated" className="flex flex-col gap-3 p-3">
       <header className="flex items-center gap-2">
@@ -44,8 +57,7 @@ function PreviewCard({ preview }: { preview: AssistActionPreview }) {
         <BrianButton
           className="py-1 text-xs"
           onClick={() => {
-            assistState.addMessage("assistant", `Applied: ${preview.collapsed_line}`);
-            assistState.setPreview(null);
+            void confirm();
           }}
         >
           Confirm

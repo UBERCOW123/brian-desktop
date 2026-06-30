@@ -29,6 +29,8 @@ core-auth = { workspace = true }
 core-sync = { workspace = true }
 tauri-plugin-deep-link = "2"
 tauri-plugin-single-instance = { version = "2", features = ["deep-link"] }
+rfd = "0.15"
+url = "2"
 
 [features]
 default = ["custom-protocol"]

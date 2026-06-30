@@ -57,6 +57,14 @@ pub struct WidgetInstanceProjection {
     pub config_json: String,
 }
 
+#[derive(Debug, Clone, Serialize)]
+pub struct NotebookNote {
+    pub id: Uuid,
+    pub title: String,
+    pub body: String,
+    pub updated_at: DateTime<Utc>,
+}
+
 pub struct Projections<'a> {
     repo: CoreRepository<'a>,
 }
@@ -218,5 +226,39 @@ impl<'a> Projections<'a> {
                 })
             })
             .collect())
+    }
+
+    pub fn notebook_notes(&self) -> Result<Vec<NotebookNote>, crate::RepositoryError> {
+        let records = self
+            .repo
+            .get_records_by_kinds(&[CoreRecordKind::TimelineItem], false)?;
+        let mut notes = Vec::new();
+        for record in records {
+            if record.status == "deleted" {
+                continue;
+            }
+            let payload = record.payload().unwrap_or_default();
+            let timeline_type = payload
+                .get("timelineType")
+                .and_then(|v| v.as_str())
+                .unwrap_or("note");
+            if timeline_type != "note" {
+                continue;
+            }
+            let body = payload
+                .get("body")
+                .and_then(|v| v.as_str())
+                .or(record.summary.as_deref())
+                .unwrap_or("")
+                .to_string();
+            notes.push(NotebookNote {
+                id: record.id,
+                title: record.title.clone(),
+                body,
+                updated_at: record.updated_at,
+            });
+        }
+        notes.sort_by(|a, b| b.updated_at.cmp(&a.updated_at));
+        Ok(notes)
     }
 }

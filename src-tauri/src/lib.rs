@@ -1,5 +1,6 @@
 mod app_state;
 mod commands;
+mod companion;
 
 use tauri::Manager;
 use tauri_plugin_deep_link::DeepLinkExt;
@@ -65,6 +66,17 @@ pub fn run() {
             commands::set_shell_layout,
             commands::get_assist_prefs,
             commands::set_assist_prefs,
+            companion::get_browser_state,
+            companion::set_browser_state,
+            companion::list_notes,
+            companion::create_note,
+            companion::update_note,
+            companion::get_ide_state,
+            companion::set_ide_state,
+            companion::pick_ide_folder,
+            companion::list_ide_files,
+            companion::read_ide_file,
+            companion::write_ide_file,
         ])
         .run(tauri::generate_context!())
         .expect("error while running Brian Desktop");

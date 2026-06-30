@@ -16,7 +16,7 @@ pub use desktop_layout::{
 pub use layout::COLUMN_COUNT;
 pub use local_prefs::{LocalPrefError, LocalPrefKey, LocalPrefs};
 pub use projections::{
-    Projections, TaskQueueItem, TaskQueueStatus, TimelineEntry, TimelineEntryType,
+    NotebookNote, Projections, TaskQueueItem, TaskQueueStatus, TimelineEntry, TimelineEntryType,
     WidgetInstanceProjection,
 };
 pub use repository::{CoreRepository, RepositoryError};

@@ -98,6 +98,24 @@ impl<'a> CoreRepository<'a> {
         Ok(out)
     }
 
+    pub fn get_setting_record(&self, key: &str) -> Result<Option<CoreRecord>, RepositoryError> {
+        let mut stmt = self.conn.prepare(
+            "SELECT id, kind, title, summary, status, payload_json, source_record_id,
+                    sort_at, created_at, updated_at, deleted_at, revision, schema_version,
+                    origin_device_id, external_id
+             FROM core_records
+             WHERE kind = ?1 AND title = ?2 AND deleted_at IS NULL
+             LIMIT 1",
+        )?;
+        let record = stmt
+            .query_row(
+                params![CoreRecordKind::AppSetting.to_string(), key],
+                record_from_row,
+            )
+            .optional()?;
+        Ok(record)
+    }
+
     pub fn insert_event(&self, event: &CoreEvent) -> Result<(), RepositoryError> {
         self.conn.execute(
             "INSERT OR REPLACE INTO core_events (

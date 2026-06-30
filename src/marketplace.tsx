@@ -1,6 +1,9 @@
 import { invoke } from "@tauri-apps/api/core";
 import { createGlassCard } from "./components/glass-card";
 import { AssistWidget } from "./react/AssistWidget";
+import { BrowserWidget } from "./react/BrowserWidget";
+import { IdeWidget } from "./react/IdeWidget";
+import { NotebookWidget } from "./react/NotebookWidget";
 import { mountReact } from "./react/mount";
 import { renderSyncPanel } from "./sync-panel";
 import { renderTimeline } from "./timeline";
@@ -111,6 +114,21 @@ export async function renderWidgetBody(widgetType: string, body: HTMLElement): P
 
   if (widgetType === "desktop_assist") {
     mountReact(body, <AssistWidget />);
+    return;
+  }
+
+  if (widgetType === "desktop_browser") {
+    mountReact(body, <BrowserWidget />);
+    return;
+  }
+
+  if (widgetType === "desktop_notebook") {
+    mountReact(body, <NotebookWidget />);
+    return;
+  }
+
+  if (widgetType === "desktop_ide") {
+    mountReact(body, <IdeWidget />);
     return;
   }
 

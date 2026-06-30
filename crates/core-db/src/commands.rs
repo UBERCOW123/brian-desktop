@@ -56,6 +56,105 @@ impl<'a> CommandService<'a> {
         Ok(record)
     }
 
+    pub fn create_note(
+        &self,
+        title: impl Into<String>,
+        body: impl Into<String>,
+    ) -> Result<CoreRecord, CommandError> {
+        let title = title.into();
+        let body = body.into();
+        let mut record = CoreRecord::new(CoreRecordKind::TimelineItem, title.clone());
+        record.summary = Some(body.clone());
+        record.origin_device_id = self.origin_device_id.clone();
+        record.payload_json = json!({
+            "timelineType": "note",
+            "body": body,
+        })
+        .to_string();
+        record = RecordContract::with_merged_payload(record);
+        self.write_record_change(&record, CoreEventKind::RecordCreated, json!({}))?;
+        Ok(record)
+    }
+
+    pub fn update_note(
+        &self,
+        id: Uuid,
+        title: impl Into<String>,
+        body: impl Into<String>,
+    ) -> Result<CoreRecord, CommandError> {
+        let title = title.into();
+        let body = body.into();
+        let existing = self
+            .repo
+            .get_record(id)?
+            .ok_or(CommandError::NoteNotFound(id))?;
+        if existing.kind != CoreRecordKind::TimelineItem || existing.status == "deleted" {
+            return Err(CommandError::NoteNotFound(id));
+        }
+
+        let mut updated = existing.clone();
+        updated.title = title.clone();
+        updated.summary = Some(body.clone());
+        updated.updated_at = Utc::now();
+        updated.revision += 1;
+        updated.origin_device_id = self.origin_device_id.clone();
+        updated.payload_json = json!({
+            "timelineType": "note",
+            "body": body,
+        })
+        .to_string();
+        updated = RecordContract::with_merged_payload(updated);
+        self.write_record_change(&updated, CoreEventKind::RecordUpdated, json!({}))?;
+        Ok(updated)
+    }
+
+    pub fn get_app_setting_json(
+        &self,
+        key: &str,
+    ) -> Result<Option<serde_json::Value>, CommandError> {
+        let record = self.repo.get_setting_record(key)?;
+        Ok(record.and_then(|r| r.payload().ok()))
+    }
+
+    pub fn set_app_setting_json(
+        &self,
+        key: &str,
+        value: serde_json::Value,
+    ) -> Result<(), CommandError> {
+        let existing = self.repo.get_setting_record(key)?;
+        let now = Utc::now();
+        let id = existing.as_ref().map(|r| r.id).unwrap_or_else(Uuid::new_v4);
+        let created_at = existing.as_ref().map(|r| r.created_at).unwrap_or(now);
+        let revision = existing.as_ref().map(|r| r.revision + 1).unwrap_or(1);
+
+        let mut record = CoreRecord {
+            id,
+            kind: CoreRecordKind::AppSetting,
+            title: key.to_string(),
+            summary: Some("Setting".into()),
+            status: "active".into(),
+            payload_json: value.to_string(),
+            source_record_id: None,
+            sort_at: now,
+            created_at,
+            updated_at: now,
+            deleted_at: None,
+            revision,
+            schema_version: 1,
+            origin_device_id: self.origin_device_id.clone(),
+            external_id: None,
+        };
+        record = RecordContract::with_merged_payload(record);
+
+        let event_kind = if existing.is_some() {
+            CoreEventKind::RecordUpdated
+        } else {
+            CoreEventKind::RecordCreated
+        };
+        self.write_record_change(&record, event_kind, json!({ "key": key }))?;
+        Ok(())
+    }
+
     pub fn install_widget(
         &self,
         entry: &WidgetCatalogEntry,
@@ -144,7 +243,8 @@ impl<'a> CommandService<'a> {
     ) -> Result<bool, CommandError> {
         use crate::desktop_layout::{
             build_template_slots, catalog_entry, template_rail_row_units, template_slot_for,
-            widgets_overlap, DEFAULT_RAIL_ROW_UNITS, WORKBENCH_LAYOUT_EPOCH,
+            widgets_overlap, DEFAULT_RAIL_ROW_UNITS, REMOVED_TEMPLATE_WIDGETS,
+            WORKBENCH_LAYOUT_EPOCH,
         };
         use crate::local_prefs::{LocalPrefKey, LocalPrefs};
         use crate::projections::Projections;
@@ -178,6 +278,15 @@ impl<'a> CommandService<'a> {
         let rail_row_units = template_rail_row_units(
             visible_row_units.unwrap_or(DEFAULT_RAIL_ROW_UNITS),
         );
+
+        for widget in &existing {
+            if REMOVED_TEMPLATE_WIDGETS.contains(&widget.widget_type.as_str()) {
+                self.delete_widget(widget.id)?;
+            }
+        }
+
+        let existing =
+            Projections::new(CoreRepository::new(self.repo.connection())).widget_instances()?;
 
         for widget in &existing {
             if let Some(slot) = template_slot_for(&widget.widget_type, rail_row_units) {
@@ -386,13 +495,15 @@ pub enum CommandError {
     WidgetNotFound(Uuid),
     #[error("unknown widget type: {0}")]
     UnknownWidgetType(String),
+    #[error("note not found: {0}")]
+    NoteNotFound(Uuid),
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
     use crate::open_in_memory;
-    use core_contracts::{SyncOutboxStatus, WidgetCatalog};
+    use core_contracts::{CoreRecordKind, SyncOutboxStatus, WidgetCatalog};
 
     fn clock_entry() -> WidgetCatalogEntry {
         WidgetCatalog::load()
@@ -413,6 +524,21 @@ mod tests {
             .unwrap();
         assert_eq!(pending.len(), 1);
         assert_eq!(repo.get_record(task.id).unwrap().unwrap().title, "Ship desktop");
+    }
+
+    #[test]
+    fn create_note_enqueues_outbox() {
+        let conn = open_in_memory().unwrap();
+        let svc = CommandService::new(&conn, "test-device");
+        let note = svc.create_note("Ideas", "# Hello").unwrap();
+        assert_eq!(note.kind, CoreRecordKind::TimelineItem);
+        let payload = note.payload().unwrap();
+        assert_eq!(payload["timelineType"], "note");
+        let repo = CoreRepository::new(&conn);
+        let pending = repo
+            .get_outbox_items(Some(SyncOutboxStatus::Pending), None)
+            .unwrap();
+        assert_eq!(pending.len(), 1);
     }
 
     #[test]

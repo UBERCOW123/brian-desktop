@@ -102,5 +102,8 @@ mod tests {
         assert!(catalog.find("desktop_assist").is_some());
         assert!(catalog.find("desktop_timeline").is_some());
         assert!(catalog.find("desktop_sync").is_some());
+        assert!(catalog.find("desktop_browser").is_some());
+        assert!(catalog.find("desktop_notebook").is_some());
+        assert!(catalog.find("desktop_ide").is_some());
     }
 }
